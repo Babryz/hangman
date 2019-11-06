@@ -57,17 +57,17 @@ function createLetterBoxes()  {
 
 // TO DO:
   
-  // - Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-    // - eventListener for button, call for generateRandomWord()
+  // DONE Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
+    // DONE eventListener for button, call for generateRandomWord()
 
-  // - Funktion som slumpar fram ett ord
-    // - wordList[Math.floor(Math.random()*wordList.length)];
+  // DONE Funktion som slumpar fram ett ord
+    // GRATISGREJOR --> wordList[Math.floor(Math.random()*wordList.length)];
 
-  // - Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
-    // - For loop? i++ osv.
+  // DONE Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
+    // YES INDEED --> For loop? i++ osv.
 
   // - Funktion som körs när du trycker på bokstäverna och gissar bokstav
-    // - Kolla om bokstav finns i selectedWord-array.
+    // - Kolla om bokstav finns i selectedWord-array och också vart. Index?
     // - Om rätt: Sätt in den på rätt ruta/rutor.
     // - Om fel: Ändra till nästa bild så gubben hängs lite mer.
   
