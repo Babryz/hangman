@@ -9,14 +9,15 @@ let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändra
 let msgHolderEl = document.getElementById('message');     // DOM-nod: Ger meddelande när spelet är över
 let startGameBtnEl = document.getElementById('startGameBtn');  // DOM-nod: knappen som du startar spelet med
 let letterButtonEls = document.querySelectorAll('#letterButtons > li'); // Array av DOM-noder: Knapparna för bokstäverna
-let letterBoxEls = document.querySelectorAll('#letterBoxes > ul > li > input');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
+let letterBoxEls = document.getElementById('letterBoxes');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 
 startGameBtnEl.addEventListener('click', startGame);
 
 function startGame() {
-    generateRandomWord();
-    console.log(selectedWord);
-    createLetterBoxes();
+  startGameBtnEl.style.display = "None";
+  generateRandomWord();
+  console.log(selectedWord);
+  createLetterBoxes();
 }
 
 function generateRandomWord() {
@@ -25,10 +26,30 @@ function generateRandomWord() {
   
 }
 
-function createLetterBoxes() {
-  for (i = 0; i < selectedWord.length; i++) {
-    letterBoxEls[i].appendChild(input);
-  };
+function createLetterBoxes()  {
+  function createList() {
+  
+    let list = document.createElement('ul');
+    
+    for (let i = 0; i < selectedWord.length; i++) {
+      
+      let item = document.createElement('li');
+      let input = document.createElement('input');
+      
+      item.appendChild(input);
+
+      input.appendChild(document.createTextNode(selectedWord[i]));
+      
+      list.appendChild(item);
+      
+    }
+  
+    return list;
+  
+  }
+
+  letterBoxEls.appendChild(createList());
+
 }
 
 
