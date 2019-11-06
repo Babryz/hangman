@@ -41,9 +41,13 @@ function createLetterBoxes()  {
       input.appendChild(document.createTextNode(selectedWord[i]));
       
       list.appendChild(item);
+
+      input.setAttribute("type", "text");
+      input.setAttributeNode(document.createAttribute("disabled"));
+      
       
     }
-  
+
     return list;
   
   }
