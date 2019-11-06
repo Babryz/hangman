@@ -1,6 +1,6 @@
 // Globala variabler
 
-const wordList = ['hangman', 'develop', 'anomaly', 'manhunt', 'human', 'dinosaur', ''];      // Array: med spelets alla ord
+const wordList = ['hangman', 'develop', 'anomaly', 'manhunt', 'human', 'dinosaur'];      // Array: med spelets alla ord
 let selectedWord;    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let guesses = 0;     // Number: håller antalet gissningar som gjorts
@@ -8,23 +8,18 @@ let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändra
 
 let msgHolderEl = document.getElementById('message');     // DOM-nod: Ger meddelande när spelet är över
 let startGameBtnEl = document.getElementById('startGameBtn');  // DOM-nod: knappen som du startar spelet med
-let letterButtonEls = document.querySelectorAll('#letterButtons > li > button'); // Array av DOM-noder: Knapparna för bokstäverna
-let letterBoxEls = document.querySelectorAll('#letterBoxes > ul > li > input');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
+let letterButtonEls = document.querySelectorAll('#letterButtons > li'); // Array av DOM-noder: Knapparna för bokstäverna
+let letterBoxEls = document.querySelectorAll('#letterBoxes > ul > li');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
+
+startGameBtnEl.addEventListener('click', startGame);
 
 function startGame() {
     generateRandomWord();
-    
 }
 
 function generateRandomWord() {
   let randomWord = wordList[Math.floor(Math.random()*wordList.length)];
-  return randomWord;
-}
-
-function createLetterBoxes() {
-    for (i = 0; i < letterBoxEls.length; i++) {
-        letterBoxEls[i].appendChild()
-    }
+  console.log(randomWord);
 }
 
 // TO DO:
