@@ -24,6 +24,7 @@ function addLetterListener() {
 
 function letterButton() {
   console.log(this.value);
+  this.style.display = 'None';
 }
 
 function startGame() {
