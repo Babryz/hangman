@@ -112,10 +112,11 @@ footer {
 
 #letterBoxes li {
   display: inline-flex;
+  margin: 5px;
 }
 
 #letterBoxes input {
-  border: 1px solid #666;
+  border: 1px solid black;
   color: #666;
   font-size: 1.5em;
   font-weight: bold;
