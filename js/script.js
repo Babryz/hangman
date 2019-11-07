@@ -1,10 +1,10 @@
 // Globala variabler
 
-const wordList = ['hangman', 'develop', 'anomaly', 'manhunt', 'human', 'dinosaur'];      // Array: med spelets alla ord
+const wordList = ['HANGMAN', 'DEVELOP', 'ANOMALY', 'MANHUNT', 'HUMAN', 'DINOUSAUR'];      // Array: med spelets alla ord
 let selectedWord = "";    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let guesses = 0;     // Number: håller antalet gissningar som gjorts
-let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
+let hangmanImg = document.getElementById('hangman');      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
 
 let msgHolderEl = document.getElementById('message');     // DOM-nod: Ger meddelande när spelet är över
 let startGameBtnEl = document.getElementById('startGameBtn');  // DOM-nod: knappen som du startar spelet med
@@ -22,13 +22,8 @@ function addLetterListener() {
   }
 }
 
-function letterButton() {
-  console.log(this.value);
-  this.style.display = 'None';
-}
-
 function startGame() {
-  startGameBtnEl.style.display = "None";
+  startGameBtnEl.style.display = 'none';
   generateRandomWord();
   console.log(selectedWord);
   createLetterBoxes();
@@ -52,14 +47,13 @@ function createLetterBoxes()  {
       let input = document.createElement('input');
       
       item.appendChild(input);
-
-      input.appendChild(document.createTextNode(selectedWord[i]));
       
       list.appendChild(item);
 
       input.setAttribute("type", "text");
+      input.setAttribute("value", selectedWord[i]);
       input.setAttributeNode(document.createAttribute("disabled"));
-      
+      input.style.color = 'transparent';
       
     }
 
@@ -70,6 +64,38 @@ function createLetterBoxes()  {
   letterBoxEls.appendChild(createList());
 
 }
+
+function letterButton() {
+  console.log(this.value);
+  this.setAttributeNode(document.createAttribute("disabled"));
+  this.style.color = 'transparent';
+
+  if (selectedWord.match(this.value)) {
+    console.log('You´re right!')
+  } else {
+    guesses = guesses + 1;
+    console.log(guesses);
+  }
+}
+
+function changeImg() {
+  if (guesses = 0) {
+    hangmanImg.src = "images/h0.png";
+  } else if (guesses = 1) {
+    hangmanImg.src = "images/h1.png";
+  } else if (guesses = 2) {
+    hangmanImg.src = "images/h2.png";
+  } else if (guesses = 3) {
+    hangmanImg.src = "images/h3.png";
+  } else if (guesses = 4) {
+    hangmanImg.src = "images/h4.png";
+  } else if (guesses = 5) {
+    hangmanImg.src = "images/h5.png";
+  } else {
+    hangmanImg.src = "images/h6.png";
+  }
+}
+
 
 
 
@@ -88,6 +114,7 @@ function createLetterBoxes()  {
   // - Funktion som körs när du trycker på bokstäverna och gissar bokstav
     // DONE for loop to add eventlistener to all letterButtons.
     // DONE Få funktion att funka när man trycker på bokstav?
+    // DONE Clicked button now returns its value.
     // - Kolla om bokstav finns i selectedWord-array och också vart. Index?
     // - Om rätt: Sätt in den på rätt ruta/rutor.
     // - Om fel: Ändra till nästa bild så gubben hängs lite mer.
@@ -101,3 +128,12 @@ function createLetterBoxes()  {
   // - Lägg till funktion för att reseta spelet ifrån start.
     // - Få tillbaka alla bokstäver.
     // - 
+
+
+// SUGGESTIONS TO DO IF TIME LEFT
+
+  // - Fix styling to be more fancy.
+  // - Add possibilty too choose between categories.
+  // - Add possibilty of having sentences with spaces.
+    // - Visibility: hidden; when space there.
+  
