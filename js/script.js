@@ -8,22 +8,22 @@ let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändra
 
 let msgHolderEl = document.getElementById('message');     // DOM-nod: Ger meddelande när spelet är över
 let startGameBtnEl = document.getElementById('startGameBtn');  // DOM-nod: knappen som du startar spelet med
-let letterButtonEls = document.querySelectorAll('#letterButtons > li > button'); // Array av DOM-noder: Knapparna för bokstäverna
 
 // Don´t touch variables below.
 let letterBoxEls = document.getElementById('letterBoxes');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
-
+// let letterButtonEls = document.querySelectorAll('#letterButtons > li > button'); // Array av DOM-noder: Knapparna för bokstäverna
+let buttons = document.querySelectorAll('#letterButton');
 
 startGameBtnEl.addEventListener('click', startGame);
 
 function addLetterListener() {
-  for (let i = 0; i < letterButtonEls.length; i++) {
-    letterButtonEls[i].addEventListener('click', letterButton)
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', letterButton)
   }
 }
 
 function letterButton() {
-  letterButtonEls.style.display = "none";
+  console.log(this.value);
 }
 
 function startGame() {
@@ -85,6 +85,8 @@ function createLetterBoxes()  {
     // YES INDEED --> For loop? i++ osv.
 
   // - Funktion som körs när du trycker på bokstäverna och gissar bokstav
+    // DONE for loop to add eventlistener to all letterButtons.
+    // DONE Få funktion att funka när man trycker på bokstav?
     // - Kolla om bokstav finns i selectedWord-array och också vart. Index?
     // - Om rätt: Sätt in den på rätt ruta/rutor.
     // - Om fel: Ändra till nästa bild så gubben hängs lite mer.
@@ -94,3 +96,7 @@ function createLetterBoxes()  {
 
   // - Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
     // - eventListener när knappen är tryckt så inaktivera. Add attribute hidden.
+
+  // - Lägg till funktion för att reseta spelet ifrån start.
+    // - Få tillbaka alla bokstäver.
+    // - 
