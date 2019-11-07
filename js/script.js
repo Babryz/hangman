@@ -75,26 +75,27 @@ function letterButton() {
   } else {
     guesses = guesses + 1;
     console.log(guesses);
+    changeImg();
   }
 }
 
 function changeImg() {
-  if (guesses = 0) {
-    hangmanImg.src = "images/h0.png";
-  } else if (guesses = 1) {
-    hangmanImg.src = "images/h1.png";
-  } else if (guesses = 2) {
+  if (guesses === 1) {
+    hangmanImg.src = "images/h1.png";    
+  } else if (guesses === 2) {
     hangmanImg.src = "images/h2.png";
-  } else if (guesses = 3) {
+  } else if (guesses === 3) {
     hangmanImg.src = "images/h3.png";
-  } else if (guesses = 4) {
+  } else if (guesses === 4) {
     hangmanImg.src = "images/h4.png";
-  } else if (guesses = 5) {
+  } else if (guesses === 5) {
     hangmanImg.src = "images/h5.png";
-  } else {
+  } else if (guesses === 6) {
     hangmanImg.src = "images/h6.png";
   }
 }
+
+
 
 
 
