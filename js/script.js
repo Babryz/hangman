@@ -53,8 +53,12 @@ function createLetterBoxes()  {
       input.setAttribute("type", "text");
       input.setAttribute("value", selectedWord[i]);
       input.setAttributeNode(document.createAttribute("disabled"));
-      input.style.color = 'transparent';
       
+      if (guesses < 6) {
+        input.style.color = 'transparent';
+      } else if (guesses >= 6) {
+        input.style.color = 'red';
+      }
     }
 
     return list;
@@ -80,6 +84,7 @@ function letterButton() {
 }
 
 function changeImg() {
+
   if (guesses === 1) {
     hangmanImg.src = "images/h1.png";    
   } else if (guesses === 2) {
@@ -92,6 +97,7 @@ function changeImg() {
     hangmanImg.src = "images/h5.png";
   } else if (guesses === 6) {
     hangmanImg.src = "images/h6.png";
+    msgHolderEl.innerText = 'Well that sucked. You just died...';
   }
 }
 
