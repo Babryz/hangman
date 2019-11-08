@@ -1,6 +1,6 @@
 // Globala variabler
 
-const wordList = ['HANGMAN', 'DEVELOP', 'ANOMALY', 'MANHUNT', 'HUMAN', 'DINOUSAUR'];      // Array: med spelets alla ord
+const wordList = ['HAAANGMAN', 'DEEEVELOP', 'AAANOMALY', 'MAAANHUNT', 'HUMAAAN', 'DINOUSAAAUR'];      // Array: med spelets alla ord
 let selectedWord = "";    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let guesses = 0;     // Number: håller antalet gissningar som gjorts
@@ -13,6 +13,7 @@ let startGameBtnEl = document.getElementById('startGameBtn');  // DOM-nod: knapp
 let letterBoxEls = document.getElementById('letterBoxes');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 // let letterButtonEls = document.querySelectorAll('#letterButtons > li > button'); // Array av DOM-noder: Knapparna för bokstäverna
 let buttons = document.querySelectorAll('#letterButton');
+
 
 startGameBtnEl.addEventListener('click', startGame);
 
@@ -32,7 +33,7 @@ function startGame() {
 
 function generateRandomWord() {
   let random = wordList[Math.floor(Math.random()*wordList.length)];
-  selectedWord = random
+  selectedWord = random;
   
 }
 
@@ -53,12 +54,9 @@ function createLetterBoxes()  {
       input.setAttribute("type", "text");
       input.setAttribute("value", selectedWord[i]);
       input.setAttributeNode(document.createAttribute("disabled"));
+      input.style.color = 'transparent';
       
-      if (guesses < 6) {
-        input.style.color = 'transparent';
-      } else if (guesses >= 6) {
-        input.style.color = 'red';
-      }
+
     }
 
     return list;
@@ -74,8 +72,10 @@ function letterButton() {
   this.setAttributeNode(document.createAttribute("disabled"));
   this.style.color = 'transparent';
 
-  if (selectedWord.match(this.value)) {
+  if (selectedWord.match(this.value, "g")) {
     console.log('You´re right!')
+    console.log(indexOfValue(this.value, selectedWord));  
+
   } else {
     guesses = guesses + 1;
     console.log(guesses);
@@ -101,7 +101,16 @@ function changeImg() {
   }
 }
 
-
+function indexOfValue(value, selectedWord) {
+  let result = [];
+  for(let i = 0; i < selectedWord.length; i++) {
+      let index = selectedWord.indexOf(value, i);
+      if (index > -1 && result.indexOf(index) === -1) {
+         result.push(index);
+      }       
+  }
+  return result;
+}
 
 
 
