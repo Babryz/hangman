@@ -87,8 +87,12 @@ footer {
   text-align: center;
 }
 
-#startGameBtn {
+#startGameBtn, #playAgainBtn {
   font-size: 1.5em;
+}
+
+#playAgainBtn {
+ display: none;
 }
 
 #gameBoard {
