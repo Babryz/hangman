@@ -14,7 +14,8 @@ let playAgainBtnEl = document.getElementById('playAgainBtn');
 // Don´t touch variables below.
 let letterBoxEls = document.getElementById('letterBoxes');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 let buttons = document.querySelectorAll('#letterButton');
-let rightValue = document.querySelectorAll(`input[value="${this.value}"]`);
+let letterBoxList = document.querySelectorAll('#letterBox');
+
 
 startGameBtnEl.addEventListener('click', startGame);
 
@@ -55,7 +56,7 @@ function createLetterBoxes()  {
 
       input.setAttribute("type", "text");
       input.setAttribute("value", selectedWord[i]);
-      input.setAttribute("id", selectedWord[i]);
+      input.setAttribute("id", 'letterBox');
       input.setAttributeNode(document.createAttribute("disabled"));
       
       input.style.color = 'transparent';
@@ -79,7 +80,13 @@ function letterButton() {
     console.log('You´re right!')
     console.log(indexOfValue(this.value, selectedWord));
     rightGuesses = rightGuesses + indexOfValue(this.value, selectedWord).length;
-    // Change color to 
+
+    let rightValue = document.querySelectorAll(`input[value="${this.value}"]`);
+    
+    for (let i = 0; i < rightValue.length; i++) {
+      rightValue[i].style.color = 'green';
+    }
+
     console.log(rightGuesses);
     winScreen();
 
@@ -93,7 +100,9 @@ function letterButton() {
 
 function changeImg() {
 
-  if (wrongGuesses === 1) {
+  if (wrongGuesses === 0) {
+    hangmanImg.src = 'images/h0.png';
+  } else if (wrongGuesses === 1) {
     hangmanImg.src = "images/h1.png";    
   } else if (wrongGuesses === 2) {
     hangmanImg.src = "images/h2.png";
@@ -105,12 +114,21 @@ function changeImg() {
     hangmanImg.src = "images/h5.png";
   } else if (wrongGuesses === 6) {
     hangmanImg.src = "images/h6.png";
+    msgHolderEl.style.display = 'block';
     msgHolderEl.innerText = 'Well that sucked. You just died...';
+    playAgainBtnEl.style.display = 'block';
+
+    let letterBox = document.querySelectorAll('#letterBox');
+
+    for (let i = 0; i < letterBox.length; i++) {
+      letterBox[i].style.color = 'red';
+    }
   }
 }
 
 function winScreen() {
   if (rightGuesses === selectedWord.length) {
+    msgHolderEl.style.display = 'block';
     msgHolderEl.innerText = 'You win! The master of not getting hanged!!';
     hangmanImg.style.display = 'None';
     playAgainBtnEl.style.display = 'block';
@@ -130,10 +148,21 @@ function indexOfValue(value, selectedWord) {
 
 function playAgain() {
   playAgainBtnEl.style.display = 'none';
-  // Shows once player has won. Same place as start button
-  // removes old word from HTML
-  // Enables all letterbuttons again
-  // Insert same functions as in func startGame()
+  document.querySelector('#letterBoxes > ul').remove();
+  
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].removeAttribute('disabled');
+    buttons[i].style.color = '#666';
+  }
+  msgHolderEl.style.display = 'none';
+  rightGuesses = 0;
+  wrongGuesses = 0;
+  changeImg()
+
+  generateRandomWord();
+  console.log(selectedWord);
+  createLetterBoxes();
+  addLetterListener();
 }
 
 
