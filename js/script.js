@@ -1,6 +1,6 @@
 // Globala variabler
 
-const wordList = ['HANGMAN', 'DEVELOP', 'ANOMALY', 'MANHUNT', 'HUMAN', 'DINOUSAUR', 'GAMEPLAY', 'LYRICS', 'FINISHED', 'FINALLY', 'JAVASCRIPT', 'CHARMING', 'PRINCE'];      // Array: med spelets alla ord
+const wordList = ['HANGMAN', 'DEVELOP', 'ANOMALY', 'MANHUNT', 'HUMAN', 'DINOSAUR', 'GAMEPLAY', 'LYRICS', 'FINISHED', 'FINALLY', 'JAVASCRIPT', 'CHARMING', 'PRINCE'];      // Array: med spelets alla ord
 let selectedWord = "";    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let rightGuesses = 0;
