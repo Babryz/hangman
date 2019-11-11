@@ -1,6 +1,6 @@
 // Globala variabler
 
-const wordList = ['HAAANGMAN', 'DEEEVELOP', 'AAANOMALY', 'MAAANHUNT', 'HUMAAAN', 'DINOUSAAAUR'];      // Array: med spelets alla ord
+const wordList = ['HANGMAN', 'DEVELOP', 'ANOMALY', 'MANHUNT', 'HUMAN', 'DINOUSAUR', 'GAMEPLAY', 'LYRICS', 'FINISHED', 'FINALLY', 'JAVASCRIPT', 'CHARMING', 'PRINCE'];      // Array: med spelets alla ord
 let selectedWord = "";    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 
 let rightGuesses = 0;
@@ -14,7 +14,6 @@ let playAgainBtnEl = document.getElementById('playAgainBtn');
 // Don´t touch variables below.
 let letterBoxEls = document.getElementById('letterBoxes');    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 let buttons = document.querySelectorAll('#letterButton');
-let letterBoxList = document.querySelectorAll('#letterBox');
 
 
 startGameBtnEl.addEventListener('click', startGame);
@@ -30,7 +29,6 @@ function addLetterListener() {
 function startGame() {
   startGameBtnEl.style.display = 'none';
   generateRandomWord();
-  console.log(selectedWord);
   createLetterBoxes();
   addLetterListener();
 }
@@ -72,28 +70,21 @@ function createLetterBoxes()  {
 }
 
 function letterButton() {
-  console.log(this.value);
   this.setAttributeNode(document.createAttribute("disabled"));
   this.style.color = 'transparent';
 
   if (selectedWord.match(this.value)) {
-    console.log('You´re right!')
-    console.log(indexOfValue(this.value, selectedWord));
     rightGuesses = rightGuesses + indexOfValue(this.value, selectedWord).length;
 
     let rightValue = document.querySelectorAll(`input[value="${this.value}"]`);
-    
     for (let i = 0; i < rightValue.length; i++) {
       rightValue[i].style.color = 'green';
+      rightValue[i].removeAttribute('disabled');
     }
-
-    console.log(rightGuesses);
     winScreen();
-
 
   } else {
     wrongGuesses = wrongGuesses + 1;
-    console.log(wrongGuesses);
     changeImg();
   }
 }
@@ -155,12 +146,12 @@ function playAgain() {
     buttons[i].style.color = '#666';
   }
   msgHolderEl.style.display = 'none';
+  hangmanImg.style.display = 'block';
   rightGuesses = 0;
   wrongGuesses = 0;
   changeImg()
 
   generateRandomWord();
-  console.log(selectedWord);
   createLetterBoxes();
   addLetterListener();
 }
@@ -184,19 +175,20 @@ function playAgain() {
     // DONE for loop to add eventlistener to all letterButtons.
     // DONE Få funktion att funka när man trycker på bokstav?
     // DONE Clicked button now returns its value.
-    // - Kolla om bokstav finns i selectedWord-array och också vart. Index?
-    // - Om rätt: Sätt in den på rätt ruta/rutor.
-    // - Om fel: Ändra till nästa bild så gubben hängs lite mer.
+    // DONE Kolla om bokstav finns i selectedWord-array och också vart. Index?
+    // DONE Om rätt: Sätt in den på rätt ruta/rutor.
+    // DONE Om fel: Ändra till nästa bild så gubben hängs lite mer.
   
-  // - Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
-    // - if/else if funktion.
+  // DONE Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
+    // DONE if/else if funktion.
 
-  // - Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
-    // - eventListener när knappen är tryckt så inaktivera. Add attribute hidden.
+  // DONE Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
+    // DONE eventListener när knappen är tryckt så inaktivera. Add attribute hidden.
 
-  // - Lägg till funktion för att reseta spelet ifrån start.
-    // - Få tillbaka alla bokstäver.
-    // - 
+  // DONE Lägg till funktion för att reseta spelet ifrån start.
+    // DONE Få tillbaka alla bokstäver.
+    
+    // DONE DONE AND THE GAME IS FREAKING DONE :D :D :D
 
 
 // SUGGESTIONS TO DO IF TIME LEFT
